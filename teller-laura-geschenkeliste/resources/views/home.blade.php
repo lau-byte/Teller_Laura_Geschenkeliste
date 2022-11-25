@@ -7,6 +7,10 @@
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
+                <h5 class="card-header">
+                    <a href="{{ route('geschenke.create') }}" class="btn btn-sm btn-outline-primary">Geschenk hinzufügen</a>
+                </h5>
+
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -14,7 +18,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                     
                 </div>
             </div>
         </div>
