@@ -28,7 +28,7 @@ class GeschenkeController extends Controller
      */
     public function create()
     {
-        //
+        return view('add_geschenke');
     }
 
     /**
