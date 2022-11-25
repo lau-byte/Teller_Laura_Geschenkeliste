@@ -12,16 +12,35 @@
                 </h5>
 
                 <div class="card-body">
+                
+                <!-- Fehlermeldung Alert -->
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <!-- Erfolg Alert -->
+                @if(session()->has('success'))
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ session()->get('success') }}
+                        </div>
+                @endif
 
                 <form method="POST" action="{{ route('geschenke.store') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="title" class="col-form-label text-md-right">Geschenk</label>
+                            <label for="geschenk" class="col-form-label text-md-right">Geschenk</label>
 
-                            <input id="title" type="title" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('email') }}" autocomplete="title" autofocus>
+                            <input id="geschenk" type="geschenk" class="form-control @error('geschenk') is-invalid @enderror" name="geschenk" value="{{ old('email') }}" autocomplete="geschenk" autofocus>
 
-                            @error('title')
+                            @error('geschenk')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
