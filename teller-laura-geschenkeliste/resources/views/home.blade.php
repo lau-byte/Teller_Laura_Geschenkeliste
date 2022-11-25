@@ -18,7 +18,21 @@
                         </div>
                     @endif
 
-                     
+                    <table class="table table-hover table-borderless">
+                        <thead>
+                            <th scope="col">Geschenk</th>
+                            <th scope="col"></th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Braune Leinenhose für Tante Emma</td>
+                                <td>
+                                    <a href="" class="btn btn-sm btn-outline-success">Bearbeiten</a>
+                                    <a href="" class="btn btn-sm btn-outline-danger">Löschen</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
