@@ -35,16 +35,16 @@
                             @forelse ($geschenke as $geschenk)
                             <tr>
 
-                                    <td><a href="{{ route('geschenke.edit', $geschenk->id) }}" style="color: black">{{ $geschenk->geschenk }}</a></td>
+                                    <td><a href="{{ route('geschenke.edit', $geschenk->id) }}" style="color: black">{{ $geschenk->geschenk }}</a></td> <!-- Die Elemente-Titel der Geschenk-Elemente; bei Klick kommt man zu der Bearbeitungsseite der einzelnen Geschenk-Elemente -->
 
                                 <td>
-                                    <a href="{{ route('geschenke.edit', $geschenk->id) }}" class="btn btn-sm btn-outline-success"><i class="fa fa-pencil-square-o"></i> Bearbeiten</a>
-                                    <a href="{{ route('geschenke.show', $geschenk->id) }}" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i> Löschen</a>
+                                    <a href="{{ route('geschenke.edit', $geschenk->id) }}" class="btn btn-sm btn-outline-success"><i class="fa fa-pencil-square-o"></i> Bearbeiten</a> <!-- Button zum Bearbeiten eines Elements -->
+                                    <a href="{{ route('geschenke.show', $geschenk->id) }}" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i> Löschen</a> <!-- Button zum Löschen eines Elements -->
                                 </td>
                             </tr>
                             @empty
                             <tr>
-                                <td style="color:grey">noch keine Geschenke eingtragen</td>
+                                <td style="color:grey">noch keine Geschenke eingetragen</td> <!-- wird angezeigt wenn die Liste der Geschenke-Elemente noch leer ist --> 
                             </tr>
                             @endforelse
 

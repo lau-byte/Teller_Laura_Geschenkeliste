@@ -18,7 +18,7 @@ class GeschenkeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() //Liste der Geschenke-Elemente, die der Nutzer sehen kann; die Elemente sind so geordnet, dass das neueste oben auf der Liste erscheint
     {
         $geschenke = Geschenkeliste::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
         return view('home', compact('geschenke'));
@@ -29,7 +29,7 @@ class GeschenkeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() //Funktion zum Erstellen von Geschenke-Elementen
     {
         return view('add_geschenke');
     }
@@ -40,7 +40,7 @@ class GeschenkeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) //Funktion zum Speichern der Geschenke-Elemente
     {
         $this->validate($request, [
             'geschenk' => 'required|string|max:100', //ein Geschenktitel muss angegeben werden und darf höchstens 100 Zeichen besitzen
@@ -56,6 +56,7 @@ class GeschenkeController extends Controller
         //}else{
         //    $geschenke->besorgt = false;
         //}
+        // Die Checkbox-Funktion wurde aus Funktions-Gründen entfernt
 
         $geschenke->user_id = Auth::user()->id;
 
@@ -70,7 +71,7 @@ class GeschenkeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) //Funktion zum Anzeigen der Lösch-Option mit Ja/Nein Auswahl
     {
         $geschenke = Geschenkeliste::where('id', $id)->where('user_id', Auth::user()->id)->first();
         if(!$geschenke){
@@ -85,7 +86,7 @@ class GeschenkeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) //Funktion zum Bearbeiten der Geschenke-Elemente
     {
         $geschenke = Geschenkeliste::where('id', $id)->where('user_id', Auth::user()->id)->first();
         if(!$geschenke){
@@ -101,7 +102,7 @@ class GeschenkeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) //Funktion um das davor bearbeitete Element effektiv zu updaten
     {
         $this->validate($request, [
             'geschenk' => 'required|string|max:100', //ein Geschenktitel muss angegeben werden und darf höchstens 100 Zeichen besitzen
@@ -123,7 +124,7 @@ class GeschenkeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id) //Funktion zum Löschen der einzelnen Geschenke-Elemente
     {
         $geschenke = Geschenkeliste::where('id', $id)->where('user_id', Auth::user()->id)->first();
         $geschenke->delete();
