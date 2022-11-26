@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('geschenk', 100); //maximale Anzeichen bei der Benennung des Geschenks: 100
             $table->mediumText('beschreibung')->nullable(); //Beschreibung ist optional und muss nicht ausgefüllt werden
-            $table->boolean('besorgt')->default(false); //Ist das Geschenk schon besorgt oder nicht? Standardmäßig ist der Wert 'false', weil erst mal kein Geschenk besorgt wurde
+            //$table->boolean('besorgt')->default(false); //Ist das Geschenk schon besorgt oder nicht? Standardmäßig ist der Wert 'false', weil erst mal kein Geschenk besorgt wurde
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

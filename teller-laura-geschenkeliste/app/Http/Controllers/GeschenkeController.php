@@ -20,7 +20,8 @@ class GeschenkeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $geschenke = Geschenkeliste::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        return view('home', compact('geschenke'));
     }
 
     /**
@@ -44,16 +45,17 @@ class GeschenkeController extends Controller
         $this->validate($request, [
             'geschenk' => 'required|string|max:100', //ein Geschenktitel muss angegeben werden und darf höchstens 100 Zeichen besitzen
             'beschreibung' => 'nullable|string', //eine Beschreibung ist optional und hat keine maximale Zeichenlänge
-            'besorgt' => 'nullable', //Die Auswahl "besorgt" ist optional
         ]);
 
         $geschenke = new Geschenkeliste;
         $geschenke->geschenk = $request->input('geschenk');
         $geschenke->beschreibung = $request->input('beschreibung');
 
-        if($request->has('besorgt')){
-            $geschenke->besorgt = true;
-        }
+        //if($request->has('completed')){
+        //    $geschenke->besorgt = true;
+        //}else{
+        //    $geschenke->besorgt = false;
+        //}
 
         $geschenke->user_id = Auth::user()->id;
 
@@ -70,7 +72,11 @@ class GeschenkeController extends Controller
      */
     public function show($id)
     {
-        //
+        $geschenke = Geschenkeliste::where('id', $id)->where('user_id', Auth::user()->id)->first();
+        if(!$geschenke){
+            abort(404);
+        }
+        return view('delete_geschenke', compact('geschenke'));
     }
 
     /**
@@ -81,7 +87,11 @@ class GeschenkeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $geschenke = Geschenkeliste::where('id', $id)->where('user_id', Auth::user()->id)->first();
+        if(!$geschenke){
+            abort(404);
+        }
+        return view('edit_geschenke', compact('geschenke')); 
     }
 
     /**
@@ -93,7 +103,18 @@ class GeschenkeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'geschenk' => 'required|string|max:100', //ein Geschenktitel muss angegeben werden und darf höchstens 100 Zeichen besitzen
+            'beschreibung' => 'nullable|string', //eine Beschreibung ist optional und hat keine maximale Zeichenlänge
+        ]);
+
+        $geschenke = Geschenkeliste::where('id', $id)->where('user_id', Auth::user()->id)->first();
+        $geschenke->geschenk = $request->input('geschenk');
+        $geschenke->beschreibung = $request->input('beschreibung');
+
+        $geschenke->save();
+
+        return back()->with('success', 'Geschenk wurde geupdated');
     }
 
     /**
@@ -104,6 +125,8 @@ class GeschenkeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $geschenke = Geschenkeliste::where('id', $id)->where('user_id', Auth::user()->id)->first();
+        $geschenke->delete();
+        return redirect()->route('geschenke.index')->with('success', 'Geschenk erfolgreich gelöscht');
     }
 }
