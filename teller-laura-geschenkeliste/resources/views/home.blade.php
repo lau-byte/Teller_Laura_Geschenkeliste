@@ -9,7 +9,7 @@
 
                 <h5 class="card-header">
                     <a href="{{ route('geschenke.create') }}" class="btn btn-sm btn-outline-primary">Geschenk hinzufügen</a>
-                </h5>
+                </h5> <!-- Button zum Hinzufügen eines neuen Geschenke-Elements; leitet auf die Erstell-Seite weiter -->
 
                 <div class="card-body">
                     @if (session('status'))

@@ -8,7 +8,7 @@
                 <div class="card-header">{{ $geschenke->geschenk }} bearbeiten</div>
 
                 <h5 class="card-header">
-                    <a href="{{ route('geschenke.index') }}" class="btn btn-sm btn-outline-primary"><i class="fa fa-arrow-left"></i> Zurück</a>
+                    <a href="{{ route('geschenke.index') }}" class="btn btn-sm btn-outline-primary"><i class="fa fa-arrow-left"></i> Zurück</a> <!-- "Zurück" Button bringt den Nutzer bei Klick zurück zur Index Seite -->
                 </h5>
 
                 <div class="card-body">
@@ -32,6 +32,7 @@
                         </div>
                 @endif
 
+                <!-- Formular zum Bearbeiten des Geschenke-Elements -->
                 <form method="POST" action="{{ route('geschenke.update', $geschenke->id) }}">
                         @csrf
                         @method('PUT')
@@ -65,7 +66,7 @@
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-success">
                                     Speichern
-                                </button>
+                                </button> <!-- "Speichern" Button speichert das bearbeitete Element ab -->
                             </div>
                         </div>
                     </form>

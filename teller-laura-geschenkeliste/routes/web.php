@@ -22,4 +22,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('geschenke', 'App\Http\Controllers\GeschenkeController');
+Route::resource('geschenke', 'App\Http\Controllers\GeschenkeController'); //Route zur Geschenke Seite, auf der die Geschenke-Elemente aufgelistet sind

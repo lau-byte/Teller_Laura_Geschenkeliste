@@ -8,7 +8,7 @@
                 <div class="card-header">{{ $geschenke->geschenk }} löschen</div>
 
                 <h5 class="card-header">
-                    <a href="{{ route('geschenke.index') }}" class="btn btn-sm btn-outline-primary"><i class="fa fa-arrow-left"></i> Zurück</a>
+                    <a href="{{ route('geschenke.index') }}" class="btn btn-sm btn-outline-primary"><i class="fa fa-arrow-left"></i> Zurück</a> <!-- "Zurück" Button bringt den Nutzer bei Klick auf die Index Seite zurück -->
                 </h5>
 
                 <div class="card-body">
@@ -40,8 +40,8 @@
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-danger">
                                     Ja
-                                </button>
-                                <a href="{{ route('geschenke.index') }}" class="btn btn-info">Nein</a>
+                                </button> <!-- Bei Klick auf "Ja" Button wird das Element gelöscht und man wird auf die Index Seite zurückgeleitet -->
+                                <a href="{{ route('geschenke.index') }}" class="btn btn-info">Nein</a> <!-- Bei Klick auf "Nein" Button wird das Element nicht gelöscht und man wird ebenfalls auf die Index Seite zurückgeleitet -->
                             </div>
                         </div>
                     </form>
